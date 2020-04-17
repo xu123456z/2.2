@@ -2,19 +2,33 @@ package com.huatec.hiot_cloud.test.mvptest;
 
 import android.widget.Toast;
 
+import com.huatec.hiot_cloud.base.BasePresenter;
+import com.huatec.hiot_cloud.test.dagger2Test.ThirdObj;
 import com.huatec.hiot_cloud.test.mvptest.model.User;
 
-public class TestPresenter {
-    public TestView view;
+import javax.inject.Inject;
 
-    public TestPresenter(TestView view){
-        this.view = view;
+public class TestPresenter extends BasePresenter<TestView>{
+
+    @Inject
+    ThirdObj thirdObj;
+
+    @Inject
+    public TestPresenter(){
+
     }
+
+
+
+
     public  void login(User user){
+        thirdObj.thirdAction();
         if ("wangchun".equals(user.getUserName()) && "123456".equals(user.getPassword())){
-            view.showMessage("登录成功");
+            getView().showMessage("登录成功");
+
         }else{
-            view.showMessage("登录失败");
+            getView().showMessage("登录失败");
         }
     }
+
 }
